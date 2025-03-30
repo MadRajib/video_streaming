@@ -12,6 +12,15 @@
     $ git clone https://github.com/MadRajib/video_streaming.git
     ```
 4. Set up MediaMTX server
+
+   ```bash
+   $ cd /tmp/
+   $ wget https://github.com/bluenviron/mediamtx/releases/download/v1.11.3/mediamtx_v1.11.3_linux_amd64.tar.gz
+   $ tar -xzf mediamtx_v1.11.3_linux_amd64.tar.gz
+   $ sudo mv mediamtx /usr/local/bin/
+   $ mv ./mediamtx.yml /usr/local/etc/
+   ```
+   Check if its running or not:
    ```bash
     remote@streamer:~$ mediamtx 
     2025/03/30 05:32:43 INF MediaMTX v1.11.3
