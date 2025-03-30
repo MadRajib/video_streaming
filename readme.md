@@ -23,8 +23,17 @@
     2025/03/30 05:32:43 INF [SRT] listener opened on :8890 (UDP)
    ```
 6. Run the streamer app, add mediamtx server ip,port and required streamid
-   ```cmd
-   video_streaming> python .\streamer\stremer.py
+    ```cmd
+    export SRT_SERVER_IP=192.168.1.97
+    export SRT_PORT=8890
+    export SRT_STREAM_ID=mystream
+    
+    python .\streamer\stremer.py
+    ```
+    Without env variables:
+
+    ```cmd
+    video_streaming> python .\streamer\stremer.py
     Enter SRT Server IP: 192.168.1.97
     Enter SRT Port: 8889
     Enter Stream ID: mystream

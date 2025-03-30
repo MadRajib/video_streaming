@@ -1,9 +1,9 @@
 import os
 
-# Get user input for SRT details
-server_ip = input("Enter SRT Server IP: ").strip()
-port = input("Enter SRT Port: ").strip()
-stream_id = input("Enter Stream ID: ").strip()
+# Get values from environment variables or ask the user
+server_ip = os.getenv("SRT_SERVER_IP") or input("Enter SRT Server IP: ").strip()
+port = os.getenv("SRT_PORT") or input("Enter SRT Port: ").strip()
+stream_id = os.getenv("SRT_STREAM_ID") or input("Enter Stream ID: ").strip()
 
 # Construct the SRT URL
 SRT_URL = f"srt://{server_ip}:{port}?streamid=publish:{stream_id}&pkt_size=1316"
