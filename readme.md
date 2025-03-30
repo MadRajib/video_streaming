@@ -36,10 +36,18 @@
     For linux:
 
     ```bash
-    export SRT_SERVER_IP=192.168.1.97
-    export SRT_PORT=8890
-    export SRT_STREAM_ID=mystream
-    export VIDEO_SRC_NAME="HP Wide Vision HD Camera"
+    # For SRT
+    export STREAM_PROTOCOL="srt"
+    export STREAM_PORT="8890"
+
+    # For RTMP
+    export STREAM_PROTOCOL="rtmp"
+    export STREAM_PORT="1935"
+
+    # Common variables
+    export STREAM_SERVER_IP="192.168.1.97"
+    export STREAM_ID="mystream"
+    export STREAM_SRC_NAME="HP Wide Vision HD Camera"
     
     python .\streamer\stremer.py
     ```
@@ -47,49 +55,30 @@
     For windows:
 
     ```bash
-    $env:SRT_SERVER_IP="192.168.1.97"
-    $env:SRT_PORT="8890"
-    $env:SRT_STREAM_ID="mystream"
-    $env:VIDEO_SRC_NAME="HP Wide Vision HD Camera"
+    # for srt
+    $env:STREAM_PROTOCOL="srt"
+    $env:STREAM_PORT="8890"
+
+    # for rmtp
+    $env:STREAM_PROTOCOL="rmtp"
+    $env:STREAM_PORT="1935"
+
+    $env:STREAM_SERVER_IP="192.168.1.97"
+    $env:STREAM_ID="mystream"
+    $env:STREAM_SRC_NAME="HP Wide Vision HD Camera"
     
     python .\streamer\stremer.py
     ```
     Without env variables:
 
+    1. SRT
     ```cmd
-    video_streaming> python .\streamer\stremer.py
-    Enter SRT Server IP: 192.168.1.97
-    Enter SRT Port: 8889
-    Enter Stream ID: mystream
-
-    (gst-launch-1.0:18684): GStreamer-WARNING **: 11:04:28.897: External plugin loader failed. This most likely means that the plugin loader helper binary was not found or could not be run. You might need to set the GST_PLUGIN_SCANNER environment variable if your setup is unusual. This should normally not be required though.
-    
-    (gst-launch-1.0:18684): GStreamer-WARNING **: 11:04:28.914: Failed to load plugin 'C:\Program Files\gstreamer\1.0\msvc_x86_64\lib\gstreamer-1.0\gstpython.dll': The specified module could not be found.
-    This usually means Windows was unable to find a DLL dependency of the plugin. Please check that PATH is correct.
-    You can run 'dumpbin -dependents' (provided by the Visual Studio developer prompt) to list the DLL deps of any DLL.
-    There are also some third-party GUIs to list and debug DLL dependencies recursively.
-    Use Windows high-resolution clock, precision: 1 ms
-    Setting pipeline to PAUSED ...
-    Pipeline is live and does not need PREROLL ...
-    Pipeline is PREROLLED ...
-    Setting pipeline to PLAYING ...
-    New clock: GstSystemClock
-    Redistribute latency...
-    Redistribute latency...
-    WARNING: from element /GstPipeline:pipeline0/GstSRTSink:srtsink0: Pipeline construction is invalid, please add queues.
-    Additional debug info:
-    ../libs/gst/base/gstbasesink.c(1257): gst_base_sink_query_latency (): /GstPipeline:pipeline0/GstSRTSink:srtsink0:
-    Not enough buffering available for  the processing deadline of 0:00:00.020000000, add enough queues to buffer  0:00:00.018908400 additional data. Shortening processing latency to 0:00:00.001091600.
-    WARNING: from element /GstPipeline:pipeline0/GstSRTSink:srtsink0: Pipeline construction is invalid, please add queues.
-    Additional debug info:
-    ../libs/gst/base/gstbasesink.c(1257): gst_base_sink_query_latency (): /GstPipeline:pipeline0/GstSRTSink:srtsink0:
-    Not enough buffering available for  the processing deadline of 0:00:00.020000000, add enough queues to buffer  0:00:00.018908400 additional data. Shortening processing latency to 0:00:00.001091600.
-    WARNING: from element /GstPipeline:pipeline0/GstSRTSink:srtsink0: Connection does not exist. Trying to reconnect
-    Additional debug info:
-    ../ext/srt/gstsrtobject.c(1979): gst_srt_object_write_one (): /GstPipeline:pipeline0/GstSRTSink:srtsink0
-    WARNING: from element /GstPipeline:pipeline0/GstSRTSink:srtsink0: Error on SRT socket: Connection timeout (16). Trying to reconnect
-    Additional debug info:
-    ../ext/srt/gstsrtobject.c(1979): gst_srt_object_write_one (): /GstPipeline:pipeline0/GstSRTSink:srtsink0
-    0:00:00.0 / 99:99:99.
+    video_streaming> python .\streamer\stremer.py --protocol srt --server_ip="172.23.242.30" --port="8890" --stream_id="mystream" --src_name="Integrated Camera"
    ```
+    2. RMTP
+    ```cmd
+    python .\streamer\stremer.py --protocol rtmp --server_ip="172.23.242.30" --port="1935" --stream_id="mystream" --src_name="Integrated Camera"
+    ```
+    Note: By default __*rmtp*__ protocol is set and default streamkey is __*live*__
+
 8. Open viewer web page
