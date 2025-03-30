@@ -31,13 +31,13 @@
 <body>
 
     <video id="video" autoplay></video>
-    <div id="message">Enter details and press "Start Stream"</div>
+    <div id="message">Enter details and press "View Stream"</div>
 
     <div id="controls">
         <input type="text" id="serverIP" placeholder="Server IP" value="192.168.1.97">
         <input type="text" id="port" placeholder="Port" value="8889">
         <input type="text" id="streamID" placeholder="Stream ID" value="mystream">
-        <button onclick="startStream()">Start Stream</button>
+        <button onclick="viewStream()">View Stream</button>
     </div>
 
     <script>
@@ -48,7 +48,7 @@
             message.innerText = str;
         };
 
-        function startStream() {
+        function viewStream() {
             const serverIP = document.getElementById("serverIP").value;
             const port = document.getElementById("port").value;
             const streamID = document.getElementById("streamID").value;

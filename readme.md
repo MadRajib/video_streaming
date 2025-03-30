@@ -39,6 +39,7 @@
     export SRT_SERVER_IP=192.168.1.97
     export SRT_PORT=8890
     export SRT_STREAM_ID=mystream
+    export VIDEO_SRC_NAME="HP Wide Vision HD Camera"
     
     python .\streamer\stremer.py
     ```
@@ -49,6 +50,7 @@
     $env:SRT_SERVER_IP="192.168.1.97"
     $env:SRT_PORT="8890"
     $env:SRT_STREAM_ID="mystream"
+    $env:VIDEO_SRC_NAME="HP Wide Vision HD Camera"
     
     python .\streamer\stremer.py
     ```
