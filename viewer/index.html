@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <style>
+        html, body {
+            margin: 0; padding: 0; height: 100%;
+            font-family: "Arial", sans-serif; background: rgb(30, 30, 30);
+        }
+        #video {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
+        #message {
+            position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+            display: flex; align-items: center; text-align: center; justify-content: center;
+            font-size: 16px; font-weight: bold; color: white; pointer-events: none;
+            padding: 20px; box-sizing: border-box; text-shadow: 0 0 5px black;
+        }
+        #controls {
+            position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7); padding: 10px; border-radius: 5px;
+        }
+        input, button {
+            padding: 5px; margin: 2px;
+        }
+    </style>
+    <script defer src="./reader.js"></script>
+</head>
+
+<body>
+
+    <video id="video" autoplay></video>
+    <div id="message">Enter details and press "Start Stream"</div>
+
+    <div id="controls">
+        <input type="text" id="serverIP" placeholder="Server IP" value="192.168.1.97">
+        <input type="text" id="port" placeholder="Port" value="8889">
+        <input type="text" id="streamID" placeholder="Stream ID" value="mystream">
+        <button onclick="startStream()">Start Stream</button>
+    </div>
+
+    <script>
+        const video = document.getElementById("video");
+        const message = document.getElementById("message");
+
+        const setMessage = (str) => {
+            message.innerText = str;
+        };
+
+        function startStream() {
+            const serverIP = document.getElementById("serverIP").value;
+            const port = document.getElementById("port").value;
+            const streamID = document.getElementById("streamID").value;
+
+            if (!serverIP || !port || !streamID) {
+                setMessage("Please enter all stream details.");
+                return;
+            }
+
+            const url = `http://${serverIP}:${port}/${streamID}/whep`;
+            setMessage("Connecting to WebRTC...");
+
+            new MediaMTXWebRTCReader({
+                url: url,
+                onError: (err) => {
+                    console.error("WebRTC Error:", err);
+                    setMessage(err);
+                },
+                onTrack: (evt) => {
+                    setMessage("");
+                    video.srcObject = evt.streams[0];
+                },
+            });
+        }
+    </script>
+
+</body>
+</html>
