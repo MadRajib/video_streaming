@@ -5,7 +5,7 @@
     python_app ---(SRT using Gstreamer)---> MediaMTX ---(webrtc)--->browser
 ```
 
-## Installation
+## Installation and usage
 1. Install Gstreamer complete [GStreamer](https://gstreamer.freedesktop.org/download)
 2. Clone the repo
     ```bash
