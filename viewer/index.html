@@ -58,7 +58,8 @@
                 return;
             }
 
-            const url = `http://${serverIP}:${port}/${streamID}/whep`;
+            // const url = `http://${serverIP}:${port}/${streamID}/whep`;
+            const url = `srt://${serverIP}:${port}`;
             setMessage("Connecting to WebRTC...");
 
             new MediaMTXWebRTCReader({

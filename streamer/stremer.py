@@ -23,7 +23,7 @@ if args.protocol == "srt":
     gst_pipeline = (
         f'mfvideosrc device-name="{args.src_name}" ! videoconvert ! '
         f'x264enc tune=zerolatency bitrate=2000 speed-preset=superfast ! mpegtsmux ! '
-        f'srtsink uri={stream_url}'
+        f'srtsink uri={stream_url}?latency=50 '
     )
 elif args.protocol == "rtmp":
     stream_url = f"rtmp://{args.server_ip}:{args.port}/{args.stream_id}"
